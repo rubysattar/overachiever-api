@@ -1,12 +1,12 @@
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
 
-from .models.deck import deck
+from .models.deck import Deck
 from .models.user import User
 
-class deckSerializer(serializers.ModelSerializer):
+class DeckSerializer(serializers.ModelSerializer):
     class Meta:
-        model = deck
+        model = Deck
         fields = ('id', 'name', 'color', 'ripe', 'owner')
 
 class UserSerializer(serializers.ModelSerializer):

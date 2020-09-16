@@ -13,7 +13,7 @@ from ..serializers import DeckSerializer, UserSerializer
 # Create your views here.
 class Decks(generics.ListCreateAPIView):
     permission_classes=(IsAuthenticated,)
-    serializer_class = deckSerializer
+    serializer_class = DeckSerializer
     def get(self, request):
         """Index request"""
         # Get all the decks:
@@ -82,7 +82,7 @@ class DeckDetail(generics.RetrieveUpdateDestroyAPIView):
         # Add owner to data object now that we know this user owns the resource
         request.data['deck']['owner'] = request.user.id
         # Validate updates with serializer
-        data = deckSerializer(deck, data=request.data['deck'])
+        data = DeckSerializer(deck, data=request.data['deck'])
         if data.is_valid():
             # Save & send a 204 no content
             data.save()
