@@ -7,7 +7,7 @@ from .models.user import User
 class DeckSerializer(serializers.ModelSerializer):
     class Meta:
         model = Deck
-        fields = ('id', 'topic', 'owner')
+        fields = '__all__'
 
 class UserSerializer(serializers.ModelSerializer):
     # This model serializer will be used for User creation

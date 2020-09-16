@@ -43,19 +43,19 @@ class DeckDetail(generics.RetrieveUpdateDestroyAPIView):
     def get(self, request, pk):
         """Show request"""
         # Locate the deck to show
-        deck = get_object_or_404(deck, pk=pk)
+        deck = get_object_or_404(Deck, pk=pk)
         # Only want to show owned decks?
         if not request.user.id == deck.owner.id:
             raise PermissionDenied('Unauthorized, you do not own this deck')
 
         # Run the data through the serializer so it's formatted
-        data = DeckSerializer(Deck).data
+        data = DeckSerializer(deck).data
         return Response({ 'deck': data })
 
     def delete(self, request, pk):
         """Delete request"""
         # Locate deck to delete
-        deck = get_object_or_404(deck, pk=pk)
+        deck = get_object_or_404(Deck, pk=pk)
         # Check the deck's owner agains the user making this request
         if not request.user.id == deck.owner.id:
             raise PermissionDenied('Unauthorized, you do not own this deck')
@@ -65,27 +65,28 @@ class DeckDetail(generics.RetrieveUpdateDestroyAPIView):
 
     def partial_update(self, request, pk):
         """Update Request"""
+        # Locate deck
+        # get_object_or_404 returns a object representation of our deck
+        deck_instance = get_object_or_404(Deck, pk=pk)
         # Remove owner from request object
         # This "gets" the owner key on the data['deck'] dictionary
         # and returns False if it doesn't find it. So, if it's found we
         # remove it.
+        print(f'update data is {request.data}')
         if request.data['deck'].get('owner', False):
             del request.data['deck']['owner']
 
-        # Locate deck
-        # get_object_or_404 returns a object representation of our deck
-        deck = get_object_or_404(deck, pk=pk)
         # Check if user is the same as the request.user.id
-        if not request.user.id == deck.owner.id:
+        if not request.user.id == deck_instance.owner.id:
             raise PermissionDenied('Unauthorized, you do not own this deck')
 
         # Add owner to data object now that we know this user owns the resource
         request.data['deck']['owner'] = request.user.id
         # Validate updates with serializer
-        data = DeckSerializer(Deck, data=request.data['deck'])
-        if data.is_valid():
+        ds = DeckSerializer(deck_instance, data=request.data['deck'])
+        if ds.is_valid():
             # Save & send a 204 no content
-            data.save()
+            ds.save()
             return Response(status=status.HTTP_204_NO_CONTENT)
         # If the data is not valid, return a response with the errors
         return Response(data.errors, status=status.HTTP_400_BAD_REQUEST)
