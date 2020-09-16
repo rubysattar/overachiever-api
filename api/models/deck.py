@@ -8,6 +8,7 @@ class Deck(models.Model):
   topic = models.CharField(max_length=100)
   owner = models.ForeignKey(
       get_user_model(),
+      related_name='decks'
       on_delete=models.CASCADE
   )
 

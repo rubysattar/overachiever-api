@@ -1,2 +1,2 @@
-DROP DATABASE IF EXISTS overachiever-api;
-CREATE DATABASE overachiever-api;
+DROP DATABASE IF EXISTS "overachiever_api";
+CREATE DATABASE "overachiever_api";

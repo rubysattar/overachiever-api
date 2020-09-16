@@ -1,12 +1,12 @@
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
 
-from .models.mango import Mango
+from .models.deck import deck
 from .models.user import User
 
-class MangoSerializer(serializers.ModelSerializer):
+class deckSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Mango
+        model = deck
         fields = ('id', 'name', 'color', 'ripe', 'owner')
 
 class UserSerializer(serializers.ModelSerializer):
