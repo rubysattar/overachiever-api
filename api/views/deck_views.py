@@ -49,7 +49,7 @@ class DeckDetail(generics.RetrieveUpdateDestroyAPIView):
             raise PermissionDenied('Unauthorized, you do not own this deck')
 
         # Run the data through the serializer so it's formatted
-        data = DeckSerializer(deck).data
+        data = DeckSerializer(Deck).data
         return Response({ 'deck': data })
 
     def delete(self, request, pk):
@@ -82,7 +82,7 @@ class DeckDetail(generics.RetrieveUpdateDestroyAPIView):
         # Add owner to data object now that we know this user owns the resource
         request.data['deck']['owner'] = request.user.id
         # Validate updates with serializer
-        data = DeckSerializer(deck, data=request.data['deck'])
+        data = DeckSerializer(Deck, data=request.data['deck'])
         if data.is_valid():
             # Save & send a 204 no content
             data.save()
