@@ -3,8 +3,18 @@ from rest_framework import serializers
 
 from .models.deck import Deck
 from .models.user import User
+from .models.card import Card
+
+class CardSerializer(serializers.ModelSerializer):
+  deck = serializers.StringRelatedField(read_only=True)
+  # only runs through when we're trying to Read the books, not create or update
+  # like the string defined in the author model
+  class Meta:
+    model = Card
+    fields = '__all__'
 
 class DeckSerializer(serializers.ModelSerializer):
+    cards = CardSerializer(many=True, read_only=True)
     class Meta:
         model = Deck
         fields = '__all__'
