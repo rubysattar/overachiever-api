@@ -11,13 +11,13 @@ class CardSerializer(serializers.ModelSerializer):
   # like the string defined in the author model
   class Meta:
     model = Card
-    fields = '__all__'
+    fields = ('question','answer','deck')
 
 class DeckSerializer(serializers.ModelSerializer):
     cards = CardSerializer(many=True, read_only=True)
     class Meta:
         model = Deck
-        fields = '__all__'
+        fields = ('id', 'topic', 'cards')
 
 class UserSerializer(serializers.ModelSerializer):
     # This model serializer will be used for User creation

@@ -10,7 +10,7 @@ class Card(models.Model):
   # the deck in this case, is deleted
   # cascade option will delete all cards tied to a certain
   # deck if that deck is deleted
-  deck = models.ForeignKey("Deck", related_name="cards", on_delete=models.CASCADE)
+  deck = models.ForeignKey("Deck", related_name="cards", null=True, on_delete = models.CASCADE)
   created_at = models.DateTimeField(auto_now_add=True)
   updated_at = models.DateTimeField(auto_now=True)
 
