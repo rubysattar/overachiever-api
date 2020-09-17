@@ -5,16 +5,21 @@ from .models.deck import Deck
 from .models.user import User
 from .models.card import Card
 
+
+
 class CardSerializer(serializers.ModelSerializer):
-  deck = serializers.StringRelatedField(read_only=True)
+#   deck = DeckSerializer(read_only=True)
   # only runs through when we're trying to Read the books, not create or update
   # like the string defined in the author model
   class Meta:
     model = Card
-    fields = ('id', 'question','answer','deck')
+    fields = ('id', 'question','answer', 'created_at', 'updated_at', 'deck')
+
+class CardReadSerializer(CardSerializer):
+    deck = serializers.StringRelatedField(read_only=True)
 
 class DeckSerializer(serializers.ModelSerializer):
-    cards = CardSerializer(many=True, read_only=True)
+    cards = CardReadSerializer(many=True, read_only=True)
     class Meta:
         model = Deck
         fields = ('id', 'topic', 'cards')

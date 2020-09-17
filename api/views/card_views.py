@@ -12,7 +12,7 @@ from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 
 from ..models.card import Card
-from ..serializers import CardSerializer
+from ..serializers import CardSerializer, CardReadSerializer
 
 # Create your views here.
 class Cards(APIView):
@@ -20,9 +20,10 @@ class Cards(APIView):
     def get(self, request):
         """Index Request"""
         # print(request)
-        cards = Card.objects.filter(owner=request.user.id)
+        # cards = Card.objects.filter(owner=request.user.id)
+        cards = Card.objects.all()
         # [:10] -- this could be a potential way to put a limit on how many cards to create!
-        data = CardSerializer(cards, many=True).data
+        data = CardReadSerializer(cards, many=True).data
         return Response({ 'cards': data })
 
     serializer_class = CardSerializer
