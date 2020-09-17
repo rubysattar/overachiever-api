@@ -18,6 +18,10 @@ class CardSerializer(serializers.ModelSerializer):
 class CardReadSerializer(CardSerializer):
     deck = serializers.StringRelatedField(read_only=True)
 
+# card_views - update route potentially needs this serializer
+# class CardWriteSerializer(CardSerializer):
+#     update = serializers.CharField(max_length=150, write_only=True)
+
 class DeckSerializer(serializers.ModelSerializer):
     cards = CardReadSerializer(many=True, read_only=True)
     class Meta:

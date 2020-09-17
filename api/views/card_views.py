@@ -54,7 +54,7 @@ class CardDetail(APIView):
         if request.data['card'].get('owner', False):
             del request.data['card']['owner']
         if not request.user.id == deck_instance.owner.id:
-            raise PermissionDenied('Unauthorized, you do not own this deck')
+            raise PermissionDenied('Unauthorized, you do not own this card')
         request.data['card']['owner'] = request.user.id
         ms = CardSerializer(card, data=request.data['card'], partial=True)
         if ms.is_valid():
