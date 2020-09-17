@@ -1,5 +1,5 @@
 from django.db import models
-# from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model
 
 class Card(models.Model):
   question = models.CharField(max_length=150)
@@ -13,6 +13,11 @@ class Card(models.Model):
   deck = models.ForeignKey("Deck", related_name="cards",on_delete=models.CASCADE)
   created_at = models.DateTimeField(auto_now_add=True)
   updated_at = models.DateTimeField(auto_now=True)
+  owner = models.ForeignKey(
+      get_user_model(),
+      related_name='cards',
+      on_delete=models.CASCADE
+  )
 
   def as_dict(self):
     """Returns dictionary version of Card models"""

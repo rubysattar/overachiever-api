@@ -45,7 +45,7 @@ class CardDetail(APIView):
         card = get_object_or_404(Card, pk=pk)
         if not request.user.id == card.owner.id:
             raise PermissionDenied('Unauthorized, you do not own this card')
-        data = CardSerializer(card).data
+        data = CardReadSerializer(card).data
         return Response({ 'card': data })
 
     def partial_update(self, request, pk):
