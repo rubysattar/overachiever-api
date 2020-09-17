@@ -72,7 +72,7 @@ class DeckDetail(generics.RetrieveUpdateDestroyAPIView):
         # This "gets" the owner key on the data['deck'] dictionary
         # and returns False if it doesn't find it. So, if it's found we
         # remove it.
-        print(f'update data is {request.data}')
+        # print(f'update data is {request.data}')
         if request.data['deck'].get('owner', False):
             del request.data['deck']['owner']
 
