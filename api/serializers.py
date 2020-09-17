@@ -11,7 +11,7 @@ class CardSerializer(serializers.ModelSerializer):
   # like the string defined in the author model
   class Meta:
     model = Card
-    fields = ('question','answer','deck')
+    fields = ('id', 'question','answer','deck')
 
 class DeckSerializer(serializers.ModelSerializer):
     cards = CardSerializer(many=True, read_only=True)
