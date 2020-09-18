@@ -26,7 +26,7 @@ class DeckSerializer(serializers.ModelSerializer):
     cards = CardReadSerializer(many=True, read_only=True)
     class Meta:
         model = Deck
-        fields = ('id', 'topic', 'cards')
+        fields = ('id', 'topic', 'cards', 'owner')
 
 class UserSerializer(serializers.ModelSerializer):
     # This model serializer will be used for User creation
