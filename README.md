@@ -2,13 +2,17 @@
 
 This application allows users to create, read, update and delete flash cards to help them study for any topic they choose.
 
-## Setup Steps for front-end React application
-1. Fork and Clone this repository.
-2. Rename the cloned repo.
-3. 'cd' into the newly renamed cloned repo.
-4. Run NPM install.
-5. Run 'npx create-react-app <my-app>'
-6. npm start
+## Setup Steps for back-end Django/Python application
+1. Start a new project repository.
+2. 'cd' into the newly renamed cloned repo.
+3. Creat a .env file
+4. Add a development key to this file with a value of development (to prepare to deploy this application when ready)
+5. Add a secret key in the .env file with the key of SECRET.
+6. Run pipenv shell.
+7. Run pipenv install.
+8. Run psql
+9. Run CREATE DATABASE "your_database_name";
+10. Exit psql with '/q'
 
 ## Important Links
 - [Deployed Api]()
