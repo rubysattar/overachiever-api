@@ -75,3 +75,5 @@ DELETE | /sign-out
 - [ERD and User Stories](https://imgur.com/tOQRNyn)
 #### App screenshots:
 - []()
+
+<!-- django deployed app -->
