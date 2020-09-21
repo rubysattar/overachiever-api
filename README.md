@@ -39,14 +39,15 @@ This application allows users to create, read, update and delete flash cards to 
 
 ## Technologies Used
 - Node js
-- React js
+<!-- - React js -->
 - Javascript
-- HTML
-- CSS/Sass
+<!-- - HTML -->
+<!-- - CSS/Sass -->
 - Django
 - Python
+- Postman
 
-## Catalog of Routes
+<!-- ## Catalog of Routes
 Verb         |	URI Pattern
 ------------ | -------------
 GET | /decks
@@ -62,18 +63,40 @@ DELETE | /cards/:id
 GET | /sign-in
 POST | /sign-up
 PATCH | /change-pw
-DELETE | /sign-out
+DELETE | /sign-out -->
+
+## API End Points/ Catalog of Routes
+
+| Verb   | URI Pattern            | Controller#Action           | Token Required  |
+|--------|------------------------|-----------------------------|-----------------|
+| POST   | `/sign-up/`            | `users#signup`              | `false`         |
+| POST   | `/sign-in/`            | `users#signin`              | `false`         |
+| DELETE | `/sign-out/`           | `users#signout`             | `true`          |
+| PATCH  | `/change-pw/`          | `users#changepw`            | `true`          |
+| GET    | `/cards/`              | `cards#index`               | `true`          |
+| POST   | `/cards/`              | `cards#create`              | `true`          |
+| GET    | `/cards/<int:pk>`      | `cards#show`                | `true`          |
+| PATCH  | `/cards/<int:pk>`      | `cards#update`              | `true`          |
+| DELETE | `/cards/<int:pk>`      | `cards#delete`              | `true`          |
+| GET    | `/decks/`              | `decks#index`               | `true`          |
+| POST   | `/decks/`              | `decks#create`              | `true`          |
+| GET    | `/decks/<int:pk>`      | `deck#show`                 | `true`          |
+| PATCH  | `/decks/<int:pk>`      | `cards#update`              | `true`          |
+| DELETE | `/decks/<int:pk>`      | `cards#delete`              | `true`          |
 
 ## Unsolved Problems
-- Still need to...
-- Would eventually like to ...
+- Still need to... edit card_views and card serializers to include the ability to patch and delete cards.
+- Would eventually like to ... update the model of the cards and decks to include an ability to toggle 'nailed it', as a user.
 
 ## Images
 #### Wireframes:
-- [Wireframes](https://imgur.com/5FcImgH)
+![Screen Shot 2020-09-16 at 8 47 36 AM](https://media.git.generalassemb.ly/user/27368/files/17b4c800-fc23-11ea-8114-dca1816082bb)
+
+---
+
 #### ERD:
-- [ERD and User Stories](https://imgur.com/tOQRNyn)
-#### App screenshots:
-- []()
+![Screen Shot 2020-09-16 at 8 47 55 AM](https://media.git.generalassemb.ly/user/27368/files/5fd3ea80-fc23-11ea-80d2-f12a73c17bc0)
+
+---
 
 <!-- django deployed app -->
