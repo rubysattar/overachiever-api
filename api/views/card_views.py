@@ -29,12 +29,12 @@ class Cards(APIView):
     serializer_class = CardSerializer
     def post(self, request):
         """Post request"""
-        # print(request.data)
+        print(request.data)
         request.data['card']['owner'] = request.user.id
         card = CardSerializer(data=request.data['card'])
         if card.is_valid():
             card.save()
-            return Response({ 'card': card.data }, status=status.HTTP_201_CREATED)
+            return Response(card.data, status=status.HTTP_201_CREATED)
         else:
             return Response(card.errors, status=status.HTTP_400_BAD_REQUEST)
 
