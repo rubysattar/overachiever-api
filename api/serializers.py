@@ -9,8 +9,8 @@ from .models.card import Card
 
 class CardSerializer(serializers.ModelSerializer):
 #   deck = DeckSerializer(read_only=True)
-  # only runs through when we're trying to Read the books, not create or update
-  # like the string defined in the author model
+  # only runs through when we're trying to Read the cards, not create or update
+  # like the string defined in the deck model
   class Meta:
     model = Card
     fields = ('id', 'question','answer', 'created_at', 'updated_at', 'deck')
